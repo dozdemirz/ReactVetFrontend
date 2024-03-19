@@ -1,6 +1,6 @@
 import React from "react";
 import "./homepage.css";
-import vet from "./src/assets/vet.png";
+import vet from "../src/assets/vet.png";
 
 const HomePage = () => {
   return (
