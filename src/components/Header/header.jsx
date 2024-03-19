@@ -34,7 +34,7 @@ const Header = ({ onMenuChange }) => {
   return (
     <div className={`header ${scrolled ? "scrolled" : ""}`}>
       <Link to="/homepage" className="logo-link">
-        <img className="logo" src="./src/assets/logo.png" alt="Homepage" />
+        <img className="logo" src="../../assets/vet.png" alt="Homepage" />
       </Link>
       <div className="menu">
         <Link
