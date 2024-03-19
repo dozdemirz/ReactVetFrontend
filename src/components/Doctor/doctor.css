@@ -80,6 +80,14 @@ body {
   box-sizing: border-box;
 }
 
+.available-date-add-container input,
+ .available-date-add-container button {
+  margin-bottom: 10px;
+  width: calc(100% - 24px);
+  padding: 6px;
+  margin-top: 4px;
+}
+
 .available-date-list-table {
   width: 100%;
   border-collapse: collapse;

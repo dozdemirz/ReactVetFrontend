@@ -6,6 +6,7 @@ import {
 } from "../../API/available-date";
 import { getDoctors } from "../../API/doctor";
 import Modal from "../Modal";
+import "./doctor.css";
 
 function AvailableDate() {
   const [doctor, setDoctor] = useState([]);
