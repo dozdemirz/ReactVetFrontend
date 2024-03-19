@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../../App.css";
 import { Link } from "react-router-dom";
+import Logo from "./src/assets/logo.png";
 
 const Header = ({ onMenuChange }) => {
   const [popupVisible, setPopupVisible] = useState(false);
@@ -34,7 +35,7 @@ const Header = ({ onMenuChange }) => {
   return (
     <div className={`header ${scrolled ? "scrolled" : ""}`}>
       <Link to="/homepage" className="logo-link">
-        <img className="logo" src="./src/assets/logo.png" alt="Homepage" />
+        <img className="logo" src={Logo} alt="Homepage" />
       </Link>
       <div className="menu">
         <Link

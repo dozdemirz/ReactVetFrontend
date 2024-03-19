@@ -1,5 +1,6 @@
 import React from "react";
 import "./homepage.css";
+import vet from "./src/assets/vet.png";
 
 const HomePage = () => {
   return (
@@ -12,7 +13,7 @@ const HomePage = () => {
         </p>
       </div>
       <div className="image-container">
-        <img src="./src/assets/vet.png" alt="Clinic" className="clinic-image" />
+        <img src={vet} alt="Clinic" className="clinic-image" />
       </div>
     </div>
   );
