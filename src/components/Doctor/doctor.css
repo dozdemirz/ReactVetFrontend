@@ -81,7 +81,8 @@ body {
 }
 
 .available-date-add-container input,
- .available-date-add-container button {
+ .available-date-add-container button,
+ .available-date-add-container select {
   margin-bottom: 10px;
   width: calc(100% - 24px);
   padding: 6px;

@@ -108,10 +108,7 @@ function AvailableDate() {
           ))}
         </select>
 
-        <button
-          className="doctor-add-button"
-          onClick={handleCreateAvailableDate}
-        >
+        <button className="update-button" onClick={handleCreateAvailableDate}>
           Create
         </button>
       </div>
