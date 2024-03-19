@@ -80,7 +80,7 @@ function AvailableDate() {
     <div className="available-date-add-container">
       {showModal && (
         <Modal handleCloseModal={handleCloseError}>
-          <p>{error.message}</p>
+          <p>{error}</p>
         </Modal>
       )}
       <h1>Add Available Dates</h1>
@@ -98,7 +98,7 @@ function AvailableDate() {
           value={newAvailableDate.doctor.doctorId}
           onChange={handleNewAvailableDate}
         >
-          <option value="" disabled>
+          <option value="" disabled selected>
             Doctor
           </option>
           {doctor.map((doctor) => (
