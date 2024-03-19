@@ -1,0 +1,100 @@
+.customerManagement {
+  display: flex;
+  flex-direction: column;
+  
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 1300px;
+  height: 1000px;
+  overflow: auto;
+  position: relative;
+  margin-top: 90px;
+  background-color: white;
+}
+
+.customer-grid {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  margin-top: 10px;
+}
+
+.customer-add {
+  justify-self: end;
+  width: 100px;
+  height: 60px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+
+.customerList table {
+  width: 100%;
+  border-collapse: collapse;
+  
+}
+
+.customerList {
+  width: 100%;
+  
+}
+
+
+.customerList th, .customerList td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.customerList th {
+  background-color: #f2f2f2;
+}
+
+.delete-button, .customerAdd button {
+  background-color: #E6007E;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.delete-button:hover, .customerAdd button:hover {
+  background-color: #E6007E;
+}
+
+.customerAdd label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.customerAdd input, .customerAdd select {
+  width: calc(100% - 24px);
+  padding: 6px;
+  margin-top: 4px;
+}
+
+.customerAdd button {
+  margin-bottom: 10px;
+  width: calc(100% - 24px);
+  padding: 6px;
+  margin-top: 4px;
+}
+
+.update-customer input[type="text"],
+.update-customer input[type="date"],
+.update-customer button,
+.update-customer select {
+  margin-bottom: 10px;
+  width: calc(100% - 24px);
+  padding: 6px;
+  margin-top: 4px;
+}
+
+

@@ -1,0 +1,104 @@
+.appointment-management {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 1300px;
+  height: 1000px;
+  overflow: auto;
+  position: relative;
+  margin-top: 90px;
+  background-color: white;
+}
+
+.appointment-grid  {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  margin-top: 10px;
+}
+
+.appointment-add {
+  justify-self: end;
+  width: 100px;
+  height: 60px;
+  margin-top: 10px;
+}
+
+
+.appointmentList table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+.appointmentList th,
+.appointmentList td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.appointmentList th {
+  background-color: #f2f2f2;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.appointmentAdd {
+  margin-bottom: 20px;
+}
+
+.appointmentAdd label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.appointmentAdd input,
+.appointmentAdd select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.appointmentAdd button {
+  background-color: #E6007E;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: calc(100% - 24px);
+  padding: 6px;
+  margin-top: 4px;
+}
+
+.appointmentAdd button:hover {
+  background-color: #E6007E;
+}
+
+.delete-button {
+  padding: 6px 12px;
+  background-color: #E6007E;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #E6007E;
+}
+
+
+.update-appointment input[type="text"],
+.update-appointment input[type="datetime-local"],
+.update-appointment button,
+.update-appointment select {
+  margin-bottom: 10px;
+  width: calc(100% - 24px);
+  padding: 6px;
+  margin-top: 4px;
+}

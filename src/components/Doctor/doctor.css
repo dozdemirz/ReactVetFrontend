@@ -1,0 +1,160 @@
+/* Genel stillendirme */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* Doktor yönetimi bileşeni */
+.doctorManagement {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 1300px;
+  height: 1000px;
+  overflow: auto;
+  position: relative;
+  margin-top: 90px;
+  background-color: white;
+}
+
+.doctor-grid {
+  display: grid;
+  grid-template-columns: 5fr 1fr 1fr;
+  margin-top: 10px;
+}
+
+.doctor-add {
+  justify-self: end;
+  width: 100px;
+  height: 60px;
+  margin-top: 10px;
+}
+
+/* Doktor listesi */
+.doctorList {
+  margin-bottom: 20px;
+  
+}
+
+.doctorList table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.doctorList th,
+.doctorList td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.doctorList th {
+  background-color: #f2f2f2;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+/* Doktor ekleme formu */
+.doctorAdd label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.doctorAdd input[type='text'],
+.doctorAdd input[type='email'],
+.doctorAdd input[type='tel'],
+.doctorAdd select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.available-date-list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+.available-date-list-table th,
+.available-date-list-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.available-date-list-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+
+.doctorAdd button {
+  
+  background-color: #E6007E;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 10px;
+  width: calc(100% - 24px);
+  padding: 6px;
+  margin-top: 4px;
+}
+
+.delete-button, .show-dates-button {
+  background-color: #E6007E;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+
+.show-dates-button {
+background-color: #f18cb1;
+}
+
+/* Arama çubuğu */
+.search-bar {
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 300px;
+}
+
+
+.update-doctor input,
+.update-doctor button{
+  margin-bottom: 10px;
+  width: calc(100% - 24px);
+  padding: 6px;
+  margin-top: 4px;
+}
+
+.update-date input,
+.update-date select,
+.update-date button {
+  margin-bottom: 10px;
+  width: calc(100% - 24px);
+  padding: 6px;
+  margin-top: 4px;
+}
+
+

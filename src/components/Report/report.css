@@ -1,0 +1,101 @@
+/* report.css */
+
+.report-management {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 1300px;
+    height: 1000px;
+    overflow: auto;
+    position: relative;
+    margin-top: 90px;
+    background-color: white;
+}
+
+.report-grid {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    margin-top: 10px;
+}
+
+.add-report {
+    justify-self: end;
+    width: 100px;
+    height: 60px;
+    margin-top: 10px;
+}
+.reportList {
+    margin-bottom: 20px;
+    
+}
+
+.reportList table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.reportList th,
+.reportList td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.reportList th {
+    background-color: #f2f2f2;
+}
+
+.reportList tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.reportList tr:hover {
+    background-color: #ddd;
+}
+
+.reportAddContainer div {
+    margin-bottom: 10px;
+}
+
+.reportAddContainer label {
+    display: inline-block;
+    width: 100px;
+    color: black;
+}
+
+.reportAddContainer input,
+.reportAddContainer select {
+    width: calc(100% - 24px);
+    padding: 6px;
+    margin-top: 4px;
+}
+
+.reportAddContainer button {
+    margin-bottom: 10px;
+    width: calc(100% - 24px);
+    padding: 6px;
+    margin-top: 4px;
+    background-color: #E6007E;
+    color: white;
+    border: none;
+}
+
+.delete-button {
+    padding: 10px 15px;
+    background-color: #E6007E;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+.update-report input[type="text"],
+.update-report input[type="number"],
+.update-report button,
+.update-report select {
+    margin-bottom: 10px;
+    width: calc(100% - 24px);
+    padding: 6px;
+    margin-top: 4px;
+}

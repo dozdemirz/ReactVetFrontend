@@ -1,0 +1,87 @@
+/* vaccine.css */
+
+.vaccine-manage {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 1300px;
+  height: 1000px;
+  overflow: auto;
+  position: relative;
+  margin-top: 90px;
+  background-color: white;
+}
+
+.vaccine-grid {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  margin-top: 10px;
+}
+
+.vaccine-add {
+  justify-self: end;
+  width: 100px;
+  height: 90px;
+  margin-top: 10px;
+}
+
+.vaccineList {
+    margin-bottom: 30px;
+    
+  }
+  
+  .vaccineList table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .vaccineList th, .vaccineList td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .vaccineList th {
+    background-color: #f2f2f2;
+  }
+  
+  .vaccineList tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .vaccineList tr:hover {
+    background-color: #ddd;
+  }
+  
+  .vaccineAdd label {
+    margin-right: 10px;
+  }
+  
+  .vaccineAdd input[type="text"],
+  .vaccineAdd input[type="date"],
+  .vaccineAdd button,
+  .vaccineAdd select {
+    margin-bottom: 10px;
+    width: calc(100% - 24px);
+    padding: 6px;
+    margin-top: 4px;
+  }
+
+    .update-vaccine input[type="text"],
+    .update-vaccine input[type="date"],
+    .update-vaccine button,
+    .update-vaccine select {
+      margin-bottom: 10px;
+      width: calc(100% - 24px);
+      padding: 6px;
+      margin-top: 4px;
+    }
+    
+  .add-button {
+   background-color:#E6007E ; 
+   border: none;
+   color: white;
+   text-align: center;
+  }
+  

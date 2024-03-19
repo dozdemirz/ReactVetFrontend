@@ -1,0 +1,105 @@
+/* animal.css */
+
+.animal-manage {
+  margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 1300px;
+    height: 1000px;
+    position: relative;
+    margin-top: 90px;
+    background-color: white;
+    overflow: auto;
+}
+
+
+.animal-grid {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  margin-top: 10px;
+}
+
+.animal-add {
+  justify-self: end;
+  width: 100px;
+  height: 60px;
+  margin-top: 10px;
+}
+
+.animalList {
+    margin-bottom: 20px;
+    margin-top: 30px;
+  }
+  
+  .animalList table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .animalList th, .animalList td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .animalList th {
+    background-color: #f2f2f2;
+  }
+  
+  .animalList tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .animalList tr:hover {
+    background-color: #ddd;
+  }
+  
+  .animalAddContainer div {
+    margin-bottom: 10px;
+    
+  }
+  
+  .animalAddContainer label {
+    display: inline-block;
+    width: 100px; 
+    color: black;
+  }
+  
+  .animalAddContainer input,
+  .animalAddContainer select {
+    width: calc(100% - 24px);
+    padding: 6px;
+    margin-top: 4px;
+}
+
+  .animalAddContainer button {
+    margin-bottom: 10px;
+    width: calc(100% - 24px);
+    padding: 6px;
+    margin-top: 4px;
+    background-color: #E6007E;
+    color: white;
+    border: none;
+  }
+
+
+    .update-animal input[type="text"],
+    .update-animal input[type="date"],
+    .update-animal button,
+    .update-animal select {
+      margin-bottom: 10px;
+      width: calc(100% - 24px);
+      padding: 6px;
+      margin-top: 4px;
+    }
+  
+  .delete-button {
+    
+    padding: 10px 15px;
+    background-color: #E6007E;
+    color: white;
+    border: none;
+    cursor: pointer;
+    
+  }
