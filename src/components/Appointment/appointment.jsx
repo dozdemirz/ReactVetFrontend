@@ -113,6 +113,7 @@ const AppointmentManagement = () => {
         doctorId: "",
       },
     });
+    setIsAppointmentAddModalOpen(false);
   };
 
   const handleCloseError = () => {

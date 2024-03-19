@@ -146,6 +146,7 @@ const ReportManagement = () => {
         appointmentId: "",
       },
     });
+    setIsReportAddModalOpen(false);
   };
 
   const handleCloseError = () => {
