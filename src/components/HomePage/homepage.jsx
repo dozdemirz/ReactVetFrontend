@@ -12,7 +12,7 @@ const HomePage = () => {
         </p>
       </div>
       <div className="image-container">
-        <img src="./src/assets/vet.png" alt="Clinic" className="clinic-image" />
+        <img src="./vet.png" alt="Clinic" className="clinic-image" />
       </div>
     </div>
   );
