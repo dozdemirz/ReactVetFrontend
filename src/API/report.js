@@ -1,21 +1,22 @@
 import axios from "axios";
 
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL; 
 
 export const getReports = async () => {
-  const { data } = await axios.get("http://localhost:8080/report/find-all");
+  const { data } = await axios.get(`${BASE_URL}/report/find-all`);
   return data;
 };
 
 export const deleteReport = async (id) => {
   const { data } = await axios.delete(
-    `http://localhost:8080/report/delete/${id}`
+    `${BASE_URL}/report/delete/${id}`
   );
   return data;
 };
 
 export const createReport = async (report) => {
   const { data } = await axios.post(
-    `http://localhost:8080/report/save`,
+    `${BASE_URL}/report/save`,
     report
   );
   return data;
@@ -24,7 +25,7 @@ export const createReport = async (report) => {
 
 export const updateReportFunction = async (report) => {
   const { data } = await axios.put(
-    `http://localhost:8080/report/update/${report.reportId}`,
+    `${BASE_URL}/report/update/${report.reportId}`,
     report
   );
   return data;

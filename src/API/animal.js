@@ -1,21 +1,22 @@
 import axios from "axios";
 
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL; 
 
 export const getAnimals = async () => {
-  const { data } = await axios.get("http://localhost:8080/animal/find-all");
+  const { data } = await axios.get(`${BASE_URL}/animal/find-all`);
   return data;
 };
 
 export const deleteAnimal = async (id) => {
   const { data } = await axios.delete(
-    `http://localhost:8080/animal/delete/${id}`
+    `${BASE_URL}/animal/delete/${id}`
   );
   return data;
 };
 
 export const createAnimal = async (animal) => {
   const { data } = await axios.post(
-    `http://localhost:8080/animal/save`,
+    `${BASE_URL}/animal/save`,
     animal
   );
   return data;
@@ -24,7 +25,7 @@ export const createAnimal = async (animal) => {
 
 export const updateAnimalFunction = async (animal) => {
   const { data } = await axios.put(
-    `http://localhost:8080/animal/update/${animal.animalId}`,
+    `${BASE_URL}/animal/update/${animal.animalId}`,
     animal
   );
   return data;

@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL; 
+
 export const createAvailableDate = async (availableDate) => {
   const { data } = await axios.post(
-    `http://localhost:8080/available-date/save`,
+    `${BASE_URL}/available-date/save`,
     availableDate
   );
   return data;
@@ -10,21 +12,21 @@ export const createAvailableDate = async (availableDate) => {
 
 export const getAvailableDatesByDoctorId = async (doctorId) => {
   const { data } = await axios.get(
-    `http://localhost:8080/available-date/${doctorId}`
+    `${BASE_URL}/available-date/${doctorId}`
   );
   return data;
 };
 
 export const deleteAvailableDate = async (id) => {
   const { data } = await axios.delete(
-    `http://localhost:8080/available-date/delete/${id}`
+    `${BASE_URL}/available-date/delete/${id}`
   );
   return data;
 };
 
 export const updateAvailableDateFunction = async (availableDate) => {
   const { data } = await axios.put(
-    `http://localhost:8080/available-date/update/${availableDate.availableDateId}`,
+    `${BASE_URL}/available-date/update/${availableDate.availableDateId}`,
     availableDate
   );
   return data;

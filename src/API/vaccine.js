@@ -1,21 +1,22 @@
 import axios from "axios";
 
+const BASE_URL = import.meta.env.VITE_APP_BASE_URL; 
 
 export const getVaccine = async () => {
-  const { data } = await axios.get("http://localhost:8080/vaccine/find-all");
+  const { data } = await axios.get(`${BASE_URL}/vaccine/find-all`);
   return data;
 };
 
 export const deleteVaccine = async (id) => {
   const { data } = await axios.delete(
-    `http://localhost:8080/vaccine/delete/${id}`
+    `${BASE_URL}/vaccine/delete/${id}`
   );
   return data;
 };
 
 export const createVaccine = async (vaccine) => {
   const { data } = await axios.post(
-    `http://localhost:8080/vaccine/save`,
+    `${BASE_URL}/vaccine/save`,
     vaccine
   );
   return data;
@@ -23,7 +24,7 @@ export const createVaccine = async (vaccine) => {
 
 export const updateVaccineFunction = async (vaccine) => {
   const { data } = await axios.put(
-    `http://localhost:8080/vaccine/update/${vaccine.vaccineId}`,
+    `${BASE_URL}/vaccine/update/${vaccine.vaccineId}`,
     vaccine
   );
   return data;
