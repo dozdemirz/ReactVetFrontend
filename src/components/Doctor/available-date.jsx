@@ -95,7 +95,7 @@ function AvailableDate() {
 
         <select
           name="doctorId"
-          value={newAvailableDate.doctor.id}
+          value={newAvailableDate.doctor.doctorId}
           onChange={handleNewAvailableDate}
         >
           <option value="" disabled>
