@@ -12,10 +12,14 @@ Bu proje, hem frontend hem backend kullanarak veterinerlerin müşteri ve hayvan
 - Axios
 - Lombok
 
-## Deploy Linki
+## Frontend Deploy Linki (Backend bağlantılı)
 
 https://react-vet-frontend.vercel.app/
 
-#### Backend Reposu
+## Backend Deploy Linki
+
+https://reactvetbackend.onrender.com
+
+## Backend Repo Linki
 
 https://github.com/dozdemirz/ReactVetBackend
