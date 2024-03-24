@@ -458,7 +458,9 @@ const AnimalManagement = () => {
                 onChange={handleNewAnimal}
                 required
               >
-                <option value="">Select</option>
+                <option value="" disabled>
+                  Select
+                </option>
                 <option typeof="text" value="Male">
                   Male
                 </option>
