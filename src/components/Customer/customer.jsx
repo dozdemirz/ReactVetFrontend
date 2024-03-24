@@ -5,6 +5,7 @@ import {
   getCustomers,
   createCustomer,
   updateCustomerFunction,
+  getCustomerByName,
 } from "../../API/customer";
 import Modal from "../Modal";
 
@@ -26,17 +27,42 @@ const CustomerManagement = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    getCustomers().then((data) => {
-      setCustomers(data);
-    });
+    getCustomers()
+      .then((data) => {
+        setCustomers(data);
+      })
+      .catch((error) => {
+        setError(error.response.data);
+        setShowModal(true);
+      });
     setReload(false);
   }, [reload]);
 
-  const handleDelete = (id) => {
-    deleteCustomer(id).then(() => {
-      setReload(true);
-    });
-  };
+  useEffect(() => {
+    if (searchTerm.trim() !== "") {
+      // Arama terimi boş değilse API isteği gönder
+      getCustomerByName(searchTerm)
+        .then((data) => {
+          setCustomers(data); // Gelen müşteri verilerini güncelle
+        })
+        .catch((error) => {
+          setError(error.response.data);
+          setShowModal(true);
+          setCustomers([]);
+        });
+    } else {
+      // Arama terimi boşsa, tüm müşterileri getir
+      getCustomers()
+        .then((data) => {
+          setCustomers(data);
+        })
+        .catch((error) => {
+          setError(error.response.data);
+          setShowModal(true);
+          setCustomers([]);
+        });
+    }
+  }, [searchTerm]); // searchTerm değiştiğinde bu etki tekrar çalışır
 
   const handleNewCustomer = (event) => {
     setNewCustomer({
@@ -63,20 +89,6 @@ const CustomerManagement = () => {
     });
     setIsCustomerAddModalOpen(false);
   };
-
-  const filterCustomers = (customer) => {
-    return (
-      customer.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.customerMail.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.customerAddress
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase()) ||
-      customer.customerCity.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.customerPhone.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  };
-
-  const filteredCustomers = customers.filter(filterCustomers);
 
   const handleCloseError = () => {
     setError(null);
@@ -126,6 +138,17 @@ const CustomerManagement = () => {
       customerPhone: "",
     });
     setIsCustomerEditModalOpen(false);
+  };
+
+  const handleDelete = (id) => {
+    deleteCustomer(id)
+      .then(() => {
+        setReload(true);
+      })
+      .catch((error) => {
+        setError(error.response.data);
+        setShowModal(true);
+      });
   };
 
   const handleAddBtn = (event) => {
@@ -183,7 +206,7 @@ const CustomerManagement = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredCustomers.map((customer) => (
+            {customers.map((customer) => (
               <tr key={customer.customerId}>
                 <td>{customer.customerName}</td>
                 <td>{customer.customerMail}</td>

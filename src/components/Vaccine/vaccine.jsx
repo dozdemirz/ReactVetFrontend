@@ -5,6 +5,10 @@ import {
   getVaccine,
   createVaccine,
   updateVaccineFunction,
+  getVaccineAfterDate,
+  getVaccineBeforeDate,
+  getVaccineBetweenTwoDates,
+  getVaccineByAnimal,
 } from "../../API/vaccine";
 import { getAnimals, deleteAnimal, createAnimal } from "../../API/animal";
 import { getReports } from "../../API/report";
@@ -20,6 +24,10 @@ const VaccineManagement = () => {
   const [isVaccineEditModalOpen, setIsVaccineEditModalOpen] = useState(false);
   const [isVaccineAddModalOpen, setIsVaccineAddModalOpen] = useState(false);
   const [report, setReport] = useState([]);
+  const [results, setResults] = useState([]);
+  const [animalSearchTerm, setAnimalSearchTerm] = useState("");
+  const [startSearchTerm, setStartSearchTerm] = useState("");
+  const [endSearchTerm, setEndSearchTerm] = useState("");
   const [newVaccine, setNewVaccine] = useState({
     vaccineName: "",
     vaccineCode: "",
@@ -52,7 +60,7 @@ const VaccineManagement = () => {
   useEffect(() => {
     Promise.all([getVaccine(), getAnimals(), getReports()])
       .then(([vaccinesData, animalsData, reportsData]) => {
-        setVaccine(vaccinesData);
+        setResults(vaccinesData);
         setAnimal(animalsData);
         setReport(reportsData);
       })
@@ -61,6 +69,43 @@ const VaccineManagement = () => {
       });
     setReload(false);
   }, [reload]);
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      try {
+        let results = [];
+        if (animalSearchTerm.trim() !== "") {
+          const byAnimal = await getVaccineByAnimal(animalSearchTerm);
+          results = [...results, ...byAnimal];
+        }
+        if (startSearchTerm.trim() !== "" && endSearchTerm.trim() !== "") {
+          const betweenTwoDates = await getVaccineBetweenTwoDates(
+            startSearchTerm,
+            endSearchTerm
+          );
+          results = betweenTwoDates;
+        } else if (startSearchTerm.trim() !== "") {
+          const startDates = await getVaccineAfterDate(startSearchTerm);
+          results = startDates;
+        } else if (endSearchTerm.trim() !== "") {
+          const endDates = await getVaccineBeforeDate(endSearchTerm);
+          results = endDates;
+        } else if (
+          animalSearchTerm.trim() === "" &&
+          startSearchTerm.trim() === "" &&
+          endSearchTerm.trim() === ""
+        ) {
+          results = await getVaccine();
+          setResults(results);
+        }
+        setResults(results);
+      } catch (error) {
+        console.error(error);
+        setResults([]);
+      }
+    };
+    fetchResults();
+  }, [animalSearchTerm, startSearchTerm, endSearchTerm]);
 
   const handleDelete = (id) => {
     deleteVaccine(id).then(() => {
@@ -90,7 +135,7 @@ const VaccineManagement = () => {
         [name]: value,
       }));
     }
-    console.log(newVaccine.animal.id);
+    console.log(newVaccine.animal.animalId);
   };
 
   const handleCreate = () => {
@@ -121,21 +166,6 @@ const VaccineManagement = () => {
     setError(null);
     setShowModal(false);
   };
-
-  const filterVaccine = (vaccine) => {
-    const startDateMatch =
-      !searchStartDate ||
-      new Date(vaccine.protectionStartDate) >= new Date(searchStartDate);
-    const endDateMatch =
-      !searchEndDate ||
-      new Date(vaccine.protectionFinishDate) <= new Date(searchEndDate);
-    const nameMatch = vaccine.vaccineName
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    return startDateMatch && endDateMatch && nameMatch;
-  };
-
-  const filteredVaccine = vaccine.filter(filterVaccine);
 
   const handleUpdateBtn = (vaccine) => {
     setUpdateVaccine({
@@ -230,21 +260,21 @@ const VaccineManagement = () => {
         <div className="search-bar">
           <input
             type="text"
-            placeholder="Search vaccine..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search by animal..."
+            value={animalSearchTerm}
+            onChange={(e) => setAnimalSearchTerm(e.target.value)}
           />
           <input
             type="date"
             placeholder="Start Date"
-            value={searchStartDate}
-            onChange={(e) => setSearchStartDate(e.target.value)}
+            value={startSearchTerm}
+            onChange={(e) => setStartSearchTerm(e.target.value)}
           />
           <input
             type="date"
             placeholder="End Date"
-            value={searchEndDate}
-            onChange={(e) => setSearchEndDate(e.target.value)}
+            value={endSearchTerm}
+            onChange={(e) => setEndSearchTerm(e.target.value)}
           />
         </div>
         <div className="vaccine-add">
@@ -270,7 +300,7 @@ const VaccineManagement = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredVaccine.map((vaccine) => (
+            {results.map((vaccine) => (
               <tr key={vaccine.vaccineId}>
                 <td>{vaccine.vaccineName}</td>
                 <td>{vaccine.vaccineCode}</td>

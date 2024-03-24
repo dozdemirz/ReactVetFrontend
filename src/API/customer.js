@@ -24,7 +24,7 @@ export const createCustomer = async (customer) => {
 
 export const updateCustomerFunction = async (customer) => {
   const { data } = await axios.put(
-    `${BASE_URL}/customer/update/${customer.id}`,
+    `${BASE_URL}/customer/update/${customer.customerId}`,
     customer
   );
   return data;
@@ -33,6 +33,14 @@ export const updateCustomerFunction = async (customer) => {
 export const getCustomerById = async (id) => {
   const { data } = await axios.get(
     `${BASE_URL}/customer/${id}`
+  );
+  return data;
+};
+
+
+export const getCustomerByName = async (name) => {
+  const { data } = await axios.get(
+    `${BASE_URL}/customer/name/${name}`
   );
   return data;
 };

@@ -6,6 +6,9 @@ import {
   deleteAnimal,
   createAnimal,
   updateAnimalFunction,
+  getAnimalByCustomerName,
+  getAnimalByName,
+  getAnimalByNameAndCustomerName,
 } from "../../API/animal";
 import Modal from "../Modal";
 
@@ -14,6 +17,9 @@ const AnimalManagement = () => {
   const [reload, setReload] = useState(true);
   const [customer, setCustomer] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [animalSearchTerm, setAnimalSearchTerm] = useState("");
+  const [customerSearchTerm, setCustomerSearchTerm] = useState("");
+  const [results, setResults] = useState([]);
   const [isAnimalEditModalOpen, setIsAnimalEditModalOpen] = useState(false);
   const [isAnimalAddModalOpen, setIsAnimalAddModalOpen] = useState(false);
   const [newAnimal, setNewAnimal] = useState({
@@ -35,16 +41,48 @@ const AnimalManagement = () => {
   useEffect(() => {
     Promise.all([getAnimals(), getCustomers()])
       .then(([animalsData, customersData]) => {
-        setAnimal(animalsData);
+        setResults(animalsData);
         setCustomer(customersData);
       })
       .catch((error) => {
-        setError(error.response.data); // Hata durumunda hatayı ayarla
-        setShowModal(true); // Modal popup'u göster
-        console.error("Error fetching data:", error);
+        setError(error.response.data);
+        setShowModal(true);
       });
     setReload(false);
   }, [reload]);
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      try {
+        let results = [];
+
+        if (
+          animalSearchTerm.trim() !== "" &&
+          customerSearchTerm.trim() !== ""
+        ) {
+          const animalsAndCustomers = await getAnimalByNameAndCustomerName(
+            animalSearchTerm,
+            customerSearchTerm
+          );
+          results = [...results, ...animalsAndCustomers];
+        } else if (animalSearchTerm.trim() !== "") {
+          const animals = await getAnimalByName(animalSearchTerm);
+          results = [...results, ...animals];
+        } else if (customerSearchTerm.trim() !== "") {
+          const customers = await getAnimalByCustomerName(customerSearchTerm);
+          results = [...results, ...customers];
+        } else {
+          results = await getAnimals();
+        }
+
+        setResults(results);
+      } catch (error) {
+        console.error(error);
+        setResults([]);
+      }
+    };
+    fetchResults();
+  }, [reload, animalSearchTerm, customerSearchTerm]);
 
   const [updateAnimal, setUpdateAnimal] = useState({
     animalName: "",
@@ -199,9 +237,15 @@ const AnimalManagement = () => {
         <div className="search-bar">
           <input
             type="text"
-            placeholder="Search animal or doctor..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search by animal name..."
+            value={animalSearchTerm}
+            onChange={(e) => setAnimalSearchTerm(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Search by customer name..."
+            value={customerSearchTerm}
+            onChange={(e) => setCustomerSearchTerm(e.target.value)}
           />
         </div>
         <div className="animal-add">
@@ -227,43 +271,33 @@ const AnimalManagement = () => {
             </tr>
           </thead>
           <tbody>
-            {animal
-              .filter(
-                (item) =>
-                  item.animalName
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase()) ||
-                  item.customer.customerName
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase())
-              )
-              .map((filteredAnimal) => (
-                <tr key={filteredAnimal.animalId}>
-                  <td>{filteredAnimal.animalName}</td>
-                  <td>{filteredAnimal.species}</td>
-                  <td>{filteredAnimal.breed}</td>
-                  <td>{filteredAnimal.gender}</td>
-                  <td>{filteredAnimal.color}</td>
-                  <td>{filteredAnimal.birthDate}</td>
-                  <td>{filteredAnimal.customer.customerName}</td>
-                  <td>
-                    <button
-                      className="delete-button"
-                      onClick={() => handleDelete(filteredAnimal.animalId)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      className="update-button"
-                      onClick={() => handleUpdateBtn(filteredAnimal)}
-                    >
-                      Edit
-                    </button>
-                  </td>
-                </tr>
-              ))}
+            {results.map((animal) => (
+              <tr key={animal.animalId}>
+                <td>{animal.animalName}</td>
+                <td>{animal.species}</td>
+                <td>{animal.breed}</td>
+                <td>{animal.gender}</td>
+                <td>{animal.color}</td>
+                <td>{animal.birthDate}</td>
+                <td>{animal.customer.customerName}</td>
+                <td>
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDelete(animal.animalId)}
+                  >
+                    Delete
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="update-button"
+                    onClick={() => handleUpdateBtn(animal)}
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
@@ -313,7 +347,9 @@ const AnimalManagement = () => {
                 onChange={handleUpdateChange}
                 required
               >
-                <option value="">Select</option>
+                <option value="" disabled>
+                  Select
+                </option>
                 <option typeof="text" value="Male">
                   Male
                 </option>
@@ -353,7 +389,9 @@ const AnimalManagement = () => {
                 onChange={handleUpdateCustomerChange}
                 required
               >
-                <option value="">Select Owner</option>
+                <option value="" disabled>
+                  Select Owner
+                </option>
                 {customer.map((customer) => (
                   <option key={customer.customerId} value={customer.customerId}>
                     {customer.customerName}
@@ -460,7 +498,9 @@ const AnimalManagement = () => {
                 onChange={handleNewAnimal}
                 required
               >
-                <option value="">Select Owner</option>
+                <option value="" disabled>
+                  Select Owner
+                </option>
                 {customer.map((customer) => (
                   <option key={customer.customerId} value={customer.customerId}>
                     {customer.customerName}
