@@ -9,6 +9,9 @@ import {
   getAppointmentBeforeDate,
   getAppointmentBetweenTwoDates,
   getAppointmentByDoctor,
+  getAppointmentAfterDateWithDoctor,
+  getAppointmentBeforeDateWithDoctor,
+  getAppointmentBetweenTwoDatesWithDoctor,
 } from "../../API/appointment";
 import { getDoctors, getAvailableDatesByDoctorId } from "../../API/doctor";
 import { getAnimals } from "../../API/animal";
